@@ -1,0 +1,148 @@
+@bg-color: rgb(255, 156, 110);
+body {
+	background-color: @bg-color;
+    padding: 10px;
+}
+@bg-btn: #902eff;
+.auth_btn--login {
+    background-color: @bg-btn;
+}
+@color-btn: rgb(255, 156, 110);
+.auth_btn--login {
+    color: spin(@bg-btn, 270); 
+}
+@radius-btn: #ffff00;
+.auth_btn--login {
+    border-radius: 10px;
+}
+@font-size-btn: #7e7e7e;
+.auth_btn--login {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+// .auth_value {
+//     padding-top: 5px;
+//     padding-bottom: 5px;
+//     padding-left: 10px;
+//     padding-right: 10px;
+//     border-radius: 10px;
+// }
+// .auth_btn--login:hover {
+//     background-color: #ffffff;
+//     color: #902eff;
+// }
+// .auth_btn--reg:hover {
+//     background-color: rgb(255, 156, 110);
+//     color: #ffffff;
+// }
+.auth {
+    border-radius: 10px;
+    max-width: 200px;
+    background-color: screen(@bg-btn, #ddd);
+    padding: 20px;
+    max-width: @w-form;
+    background-color: screen(@bg-btn, #ddd);
+    padding: 20px;
+    @media (max-width: 576px) {
+        @w-form:100%;
+        max-width: @w-form;
+    }
+    div {
+        padding-top: 10px;
+    }
+    div:first-child{
+        padding-top: 0;
+    }
+    &_value {
+        width: 180px;
+        border-radius: @radius-btn;
+        border: none;
+    }
+    &_btn--login{
+        border-radius: @radius-btn;
+        border: none;
+        padding-top: @font-size-btn*0.5;
+        padding-bottom: @font-size-btn*0.5;
+        width: 100%;
+        color: 000000;
+        background: @bg-btn;
+        transition: all;
+    }
+    &_btn--reg {
+        border-radius: @radius-btn;
+        border: none;
+        padding-top: @font-size-btn*0.5;
+        padding-bottom: @font-size-btn*0.5;
+        width: 100%;
+        border-radius: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        transition: all;
+        .set-colors();
+        &hover{
+            background: lignten(@bg-btn, 30%);
+            color: #000000;
+        }
+    }
+    &_btn--login{
+        .set-colors(@bg-btn;@color-btn);
+        &:hover{
+            background: lighten(@bg-btn, 30%);
+            color: #000000;
+        }
+    }
+    input {
+        border-radius: @radius-btn;
+        border: none;
+        .set-size(@font-size-btn);
+    }
+
+}
+.set-size(@font-size) {
+    font-size: 16px;
+    padding: @font-size*.5 @font-size*0.3;
+}
+.set-colors(@bg:@bg-btn; @text:@color-btn) {
+    background-color: @bg;
+    background-color: @text;
+}
+@w-form: #ffff00;
+
+.set-position-input() when (@w-form > 400px) {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.set-position-input(){
+    @media (max-width: 576px) {
+        width: 100%;
+    }
+}
+.catalog {
+    min-width: 320px;
+    max-width: 1140px;
+    margin: 50px auto;
+    display: grid;
+    .make-grid(1);
+    .item {
+        min-height: 150px;
+        background: lightcoral;
+    }
+}
+.make-grid(@n) when (@n <=4) {
+    &.col-@{n}{
+        @media (min-width: (1140px/(5-@n))){
+            grid-template-columns: repeat(@n, (100%/@n));
+            .item {
+                background: lighten(red, @n*10);
+            }
+        }
+    }
+    .make-grid(@n + 1)
+}
